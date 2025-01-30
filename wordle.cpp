@@ -11,9 +11,17 @@
 #include <string>    // std::string, std::getline
 #include <vector>    // std::vector
 
-std::vector<int> createSecret() {
-    // Write this procedure here
-    return {};    // replace this with your code
+std::vector<int> createSecret() 
+{
+    std::vector<int> code = {};
+    int counter = 0;
+    while (counter < 4) // REPEATING 4 TIMES
+    {
+        int val = rand() % 10;
+        code.push+back(val); //append(code, val);
+        counter = counter + 1
+    }
+    return code;    // replace this with your code
 }
 
 std::vector<std::string> getHint(std::vector<int> secret, std::vector<int> guess) {
