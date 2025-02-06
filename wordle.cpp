@@ -13,25 +13,44 @@
 
 std::vector<int> createSecret() 
 {
+    srand(time(0));
     std::vector<int> code = {};
     int counter = 0;
     while (counter < 4) // REPEATING 4 TIMES
     {
-        int val = rand() % 10;
-        code.push+back(val); //append(code, val);
-        counter = counter + 1
+        int val = rand() % 10; //val is a one digit random number
+        code.push_back(val); //append(code, val);
+        counter = counter + 1;
     }
     return code;    // replace this with your code
 }
 
 std::vector<std::string> getHint(std::vector<int> secret, std::vector<int> guess) {
-    // Write this procedure here
-    return {"X", "X", "X", "X"};    // replace this with your code
+    std::vector<std::string> hint = {};
+    for (int counter = 0; counter < 4; counter = counter + 1)
+    {
+        if (guess[counter] != secret[counter])
+        {
+            hint.push_back("X");
+        }
+        else
+        {
+            hint.push_back("O");
+        }
+    }
+    return hint;    // replace this with your code
 }
 
 bool winGame(std::vector<int> secret, std::vector<int> guess) {
-    // Write this procedure here
-    return false;    // replace this with your code
+    for (int counter = 0; counter < 4; counter = counter + 1)
+    {
+        if (guess[counter] != secret[counter])
+        {
+            return false;
+        }
+        
+    }
+    return true;    // replace this with your code
 }
 
 int main()
@@ -42,7 +61,8 @@ int main()
     // srand(time(0));
     
     std::vector<int> secret_code = createSecret();
-    std::vector<int> user_guess = {};
+    display(secret_code);
+    std::vector<int> user_guess = {-1, -1, -1, -1};
     std::vector<std::string> hint = {};    // an empty list
 
     int secret_code_length = 4;
@@ -58,7 +78,7 @@ int main()
         {
             int input;
             std::cin >> input;
-            guess.push_back(input);    // can also do append(guess, input);
+            user_guess[counter] = input;
         }
 
         hint = getHint(secret_code, user_guess);
